@@ -71,6 +71,7 @@ export default {
   },
   data: function() {
       return {
+          url:'http://127.0.0.1:8000/api/clientes',
           editar: false,
           acao:"Cadastrar",
           cliente: {
@@ -89,7 +90,8 @@ export default {
   },
   methods: {
       getCliente: function(){
-           axios.get('http://127.0.0.1:8000/api/clientes')
+        let componente = this;
+           axios.get(componente.url)
                 .then(response => (this.clientes = response.data));
                 
       },
@@ -102,7 +104,7 @@ export default {
       },
       addCliente: function(){
           let componente = this;
-          axios.post('http://127.0.0.1:8000/api/clientes', {
+          axios.post(componente.url, {
                 nome: componente.cliente.nome,
                 email: componente.cliente.email
             })
@@ -111,10 +113,10 @@ export default {
                     componente.notify("Dados salvos","Dados salvos com sucesso !");
                     componente.getCliente();
                     componente.cliente = {id:'',nome:'',email:''};
-                }
+                } 
             })
             .catch(function (error) {
-                console.log(error);
+                //console.log(error);
             });
 
       },
@@ -125,7 +127,7 @@ export default {
       },
       updateCliente: function(){
           let componente = this;
-          axios.put('http://127.0.0.1:8000/api/clientes/'+componente.cliente.id, {
+          axios.put(componente.url+'/'+componente.cliente.id, {
                 nome: componente.cliente.nome,
                 email: componente.cliente.email
             })
@@ -136,21 +138,21 @@ export default {
                 componente.cliente = {id:'',nome:'',email:''};
             })
             .catch(function (error) {
-                console.log(error);
+                //console.log(error);
             });
           this.acao = "Cadastrar";
           this.editar = false;
       },
       delet: function(id){
           let componente = this;
-          axios.delete('http://127.0.0.1:8000/api/clientes/'+id)
+          axios.delete(componente.url+'/'+id)
             .then(function (response) {
                 console.log(response.data);
                 componente.notify("Cliente excluido","Cliente removido com sucesso!");
                 componente.getCliente();
             })
             .catch(function (error) {
-                console.log(error);
+               // console.log(error);
             });
       }
   }
