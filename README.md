@@ -1,13 +1,13 @@
 # FRONT UDS - Avaliação
 
-## Introduction
+# Introducão
 
 > Desenvolvido utilizando VUEJS, o projeto realiza um gerenciamento básico de cadastro, inserindo, alterando e excluindo os dados.  Foi utilizado axios para requisições HTTP e vue-notification para notificações . 
 
 ## Code Samples
 
 <code>
-    getCliente: function(){</br>
+    getCliente: function(){ <br />
            axios.get('http://127.0.0.1:8000/api/clientes')<br/>
                 .then(response => (this.clientes = response.data));<br>}
 </code>
@@ -31,6 +31,10 @@
             });<br/>}
 </code>
 
-## Installation
-> npm run serve
-> O projeto precisa ser executado junto com a api disponivel nesse <a href ="https://github.com/carlao14/apiUDS"> <b>  link <b> </a>
+# Instalação
+<code> npm run serve </code>
+
+O projeto precisa ser executado junto com a api disponivel nesse <a href ="https://github.com/carlao14/apiUDS"> <b>  link <b> </a>
+
+* As URL's do projeto estão assumindo por padrão que o projeto Laravel sera executa em local host, para testes em produção altere as mesmas no arquivo Cliente.vue
+<code> url:'http://127.0.0.1:8000/api/clientes' </code>
